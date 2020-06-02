@@ -3,11 +3,13 @@ version: 2.1
 # Use a package of configuration called an orb.
 orbs:
   # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
+   gcp-cli: circleci/gcp-cli@1.0.0
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
-  welcome:
+  install_and_configure_cli:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+      - gcp-cli/install_and_initialize_cli:
+          context: myContext
+          executor: gcp-cli/default
